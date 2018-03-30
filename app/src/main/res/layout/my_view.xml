@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -10,28 +11,70 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:elevation="15dp"
-        card:cardCornerRadius="7dp"
+        card:cardCornerRadius="10dp"
         card:cardElevation="10dp"
         card:cardUseCompatPadding="true"
-        card:contentPadding="8dp">
+        card:contentPadding="5dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="center" />
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="40dp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_alignStart="@+id/present"
+                android:layout_below="@+id/present"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/present"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/pre"
+                android:layout_toEndOf="@+id/image"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/background_dark"
+                android:textSize="74dp" />
+
+            <TextView
+                android:id="@+id/pre"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@+id/textview"
+                android:layout_toEndOf="@+id/image"
+                android:textAlignment="viewEnd"
+                android:textSize="20dp"
                 android:textColor="@android:color/background_dark" />
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/additional"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/image"
+                android:textSize="18dp"
+                android:textColor="@android:color/background_dark" />
+
+        </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 </RelativeLayout>
