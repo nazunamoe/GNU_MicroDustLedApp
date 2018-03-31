@@ -55,8 +55,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAdapter = new MyAdapter(myDataset);
                 mRecyclerView.setAdapter(mAdapter);
                 updateData();
-                InitializeData();
-                addData();
+                new Thread(){
+                    public void run(){
+                        HttpReq req = new HttpReq();
+                        req.RequestStart();
+                        InitializeData();
+                        addData();
+                    }
+                }.start();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
