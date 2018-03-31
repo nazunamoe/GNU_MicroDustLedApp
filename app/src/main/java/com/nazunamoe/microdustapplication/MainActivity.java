@@ -50,7 +50,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                removeData();
+                myDataset.remove(0);
+                myDataset = new ArrayList<>();
+                mAdapter = new MyAdapter(myDataset);
+                mRecyclerView.setAdapter(mAdapter);
+                updateData();
+                InitializeData();
+                addData();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -87,32 +93,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void InitializeData(){
-        PM10=30;
-        PM25=25;
+        // 데이터 초기화에 이용
         PM10data=new MyData("미세먼지 (PM10)","현재 수치는",Integer.toString(PM10),"양호한 수치입니다","업데이트 일시",R.mipmap.yuuki);
         PM25data=new MyData("초미세먼지 (PM2.5)","현재 수치는",Integer.toString(PM25),"양호한 수치입니다","업데이트 일시",R.mipmap.asuka);
         Location=new MyData("측정소 위치","측정소 위치는","진주시 상대동","경남 진주시 동진로 279","업데이트 일시",R.mipmap.chie);
     }
 
     public void updateData(){
+        // 이곳에 측정 데이터를 받아오는 메서드 추가
         PM10+=5;
         PM25-=5;
-        addData();
     }
 
     public void addData(){
+        // 데이터 초기화에 이용
         myDataset.add(PM10data);
         myDataset.add(PM25data);
         myDataset.add(Location);
     }
-
-    public void removeData(){
-        myDataset.remove(PM10data);
-        myDataset.remove(PM25data);
-        myDataset.remove(Location);
-
-    }
-
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
