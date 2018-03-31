@@ -32,13 +32,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MyData> myDataset;
 
-
     public MyData PM10data;
     public MyData PM25data;
     public MyData Location;
-    public int PM10;
-    public int PM25;
-
+    public int PM10value;
+    public int PM25value;
+    HttpReq req = new HttpReq();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -55,14 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAdapter = new MyAdapter(myDataset);
                 mRecyclerView.setAdapter(mAdapter);
                 updateData();
-                new Thread(){
-                    public void run(){
-                        HttpReq req = new HttpReq();
-                        req.RequestStart();
-                        InitializeData();
-                        addData();
-                    }
-                }.start();
+                InitializeData();
+                addData();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -100,15 +94,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void InitializeData(){
         // 데이터 초기화에 이용
-        PM10data=new MyData("미세먼지 (PM10)","현재 수치는",Integer.toString(PM10),"양호한 수치입니다","업데이트 일시",R.mipmap.yuuki);
-        PM25data=new MyData("초미세먼지 (PM2.5)","현재 수치는",Integer.toString(PM25),"양호한 수치입니다","업데이트 일시",R.mipmap.asuka);
-        Location=new MyData("측정소 위치","측정소 위치는","진주시 상대동","경남 진주시 동진로 279","업데이트 일시",R.mipmap.chie);
+        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value),getString(R.string.post_good),getString(R.string.Time),R.mipmap.yuuki);
+        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value),getString(R.string.post_best),getString(R.string.Time),R.mipmap.asuka);
+        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),"진주시 상대동","경남 진주시 동진로 279",getString(R.string.Time),R.mipmap.chie);
     }
 
     public void updateData(){
         // 이곳에 측정 데이터를 받아오는 메서드 추가
-        PM10+=5;
-        PM25-=5;
+        Thread update = new Thread(){
+            public void run(){
+                req.RequestStart();
+                PM10value = req.PM10;
+                PM25value = req.PM25;
+            }
+        };
+        update.start();
+
+        Log.d("TEst",Integer.toString(PM10value));
     }
 
     public void addData(){
@@ -123,17 +125,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.normal_led_settings) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_email) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
 
         }
 
@@ -196,7 +192,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.mpreView.setText(mDataset.get(position).pre);
         holder.mpresentView.setText(mDataset.get(position).present);
         holder.mpostView.setText(mDataset.get(position).post);
-        holder.madditionalView.setText(mDataset.get(position).additional);
+       // holder.madditionalView.setText(mDataset.get(position).additional);
         holder.mImageView.setImageResource(mDataset.get(position).img);
     }
 

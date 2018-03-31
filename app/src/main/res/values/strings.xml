@@ -1,8 +1,36 @@
 <resources>
-    <string name="app_name">Micro Dust Application</string>
+    <string name="app_name">Fine Dust Application</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="Menu_1">Led Settings</string>
+    <string name="Menu_2">Email / About</string>
+
+    <string name="normal_led_settings">Led Settings</string>
+    <string name="email">Send Email to Developer</string>
+    <string name="about">About app</string>
+
+    <string name="pre">The current value is</string>
+    <string name="present"></string>
+
+    <string name="PM10">Fine Dust (PM10)</string>
+    <string name="PM25">Ultrafine Dust (PM2.5)</string>
+
+    <string name="Time">Update time</string>
+
+    <string name="Addr">Station location</string>
+    <string name="AddrPre">Station location is</string>
+
+    <string name="post_worst">It is currently the "worst" state.</string>
+    <string name="post_verybad">It is currently the "very bad" state.</string>
+    <string name="post_fairlybad">It is currently the "fairly bad" state.</string>
+    <string name="post_poor">It is currently the "poor" state.</string>
+    <string name="post_normal">It is currently the "normal" state.</string>
+    <string name="post_good">It is currently the "good" state.</string>
+    <string name="post_verygood">It is currently the "very good" state.</string>
+    <string name="post_best">It is currently the "best" state.</string>
+
 </resources>
