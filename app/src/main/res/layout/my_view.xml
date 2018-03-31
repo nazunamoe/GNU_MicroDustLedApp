@@ -9,7 +9,8 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:elevation="15dp"
         card:cardCornerRadius="10dp"
         card:cardElevation="10dp"
@@ -22,8 +23,12 @@
 
             <TextView
                 android:id="@+id/textview"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_width="351dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="6dp"
                 android:textColor="@android:color/background_dark"
                 android:textSize="40dp" />
 
@@ -33,13 +38,14 @@
                 android:layout_height="170dp"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textview"
+                android:layout_marginStart="12dp"
                 android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/post"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_alignStart="@+id/present"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textview"
                 android:layout_below="@+id/present"
                 android:textAlignment="viewEnd"
                 android:textColor="@android:color/background_dark"
@@ -47,32 +53,34 @@
 
             <TextView
                 android:id="@+id/present"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_width="181dp"
+                android:layout_height="76dp"
+                android:layout_alignEnd="@+id/textview"
                 android:layout_below="@+id/pre"
-                android:layout_toEndOf="@+id/image"
                 android:textAlignment="viewEnd"
                 android:textColor="@android:color/background_dark"
                 android:textSize="74dp" />
 
             <TextView
                 android:id="@+id/pre"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_below="@+id/textview"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="73dp"
                 android:layout_toEndOf="@+id/image"
                 android:textAlignment="viewEnd"
-                android:textSize="20dp"
-                android:textColor="@android:color/background_dark" />
+                android:textColor="@android:color/background_dark"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/additional"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_width="352dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/image"
-                android:textSize="18dp"
-                android:textColor="@android:color/background_dark" />
+                android:layout_marginStart="12dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18dp" />
 
         </RelativeLayout>
 
