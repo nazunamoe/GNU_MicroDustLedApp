@@ -1,6 +1,7 @@
 package com.nazunamoe.microdustapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Intent intent;
         if (id == R.id.normal_led_settings) {
-            // Handle the camera action
+            intent = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_email) {
 
         } else if (id == R.id.nav_about) {

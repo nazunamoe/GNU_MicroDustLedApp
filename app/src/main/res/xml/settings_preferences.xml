@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/bluetooth">
+        <Preference
+            android:id="@+id/ConnectBluetooth"
+            android:key="connect_bluetooth"
+            android:title="@string/connect_bluetooth">
+        </Preference>
+        <Preference
+            android:id="@+id/StatusBluetooth"
+            android:key="status_bluetooth"
+            android:enabled="false"
+            android:title="@string/check_bluetooth"
+            android:summary="@string/bluetooth_disconnected" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pm10ledsettings">
+       <Preference
+            android:id="@+id/StatusPM10"
+            android:key="status_pm10"
+            android:enabled="false"
+            android:title="@string/currentstatus"
+            android:summary="@string/bluetooth_disconnected" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/dustledmodes"
+            android:entryValues="@array/dustledmodes"
+            android:key="pm10mode"
+            android:title="@string/usermodesettings" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pm25ledsettings">
+        <Preference
+            android:id="@+id/StatusPM25"
+            android:key="status_pm25"
+            android:enabled="false"
+            android:title="@string/currentstatus"
+            android:summary="@string/bluetooth_disconnected" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/dustledmodes"
+            android:entryValues="@array/dustledmodes"
+            android:key="pm25mode"
+            android:title="@string/usermodesettings" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/normalledsettings">
+        <Preference
+            android:id="@+id/StatusNormal"
+            android:key="status_normal"
+            android:enabled="false"
+            android:title="@string/currentstatus"
+            android:summary="@string/bluetooth_disconnected" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/normalledmodes"
+            android:entryValues="@array/normalledmodes"
+            android:key="pm10mode"
+            android:title="@string/usermodesettings" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
