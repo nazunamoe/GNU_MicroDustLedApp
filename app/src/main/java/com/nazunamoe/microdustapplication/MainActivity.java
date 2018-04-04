@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public MyData Location;
     public int PM10value;
     public int PM25value;
+    public String stationname;
+    public String stationaddr;
+
     HttpReq req = new HttpReq();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAdapter = new MyAdapter(myDataset);
                 mRecyclerView.setAdapter(mAdapter);
                 updateData();
-                InitializeData();
+                //InitializeData();
                 addData();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -89,15 +92,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myDataset = new ArrayList<>();
         mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
+        updateData();
         InitializeData();
         addData();
     }
 
     public void InitializeData(){
         // 데이터 초기화에 이용
-        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value),getString(R.string.post_good),getString(R.string.Time),R.mipmap.yuuki);
-        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value),getString(R.string.post_best),getString(R.string.Time),R.mipmap.asuka);
-        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),"진주시 상대동","경남 진주시 동진로 279",getString(R.string.Time),R.mipmap.chie);
+        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value)+"㎍/㎥",getString(R.string.post_good),getString(R.string.Time),R.mipmap.yuuki);
+        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value)+"㎍/㎥",getString(R.string.post_best),getString(R.string.Time),R.mipmap.asuka);
+        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),req.stationname,req.stationaddr,getString(R.string.Time),R.mipmap.chie);
     }
 
     public void updateData(){
@@ -107,11 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 req.RequestStart();
                 PM10value = req.PM10;
                 PM25value = req.PM25;
+                stationname = req.stationname;
+                stationaddr = req.stationaddr;
+                InitializeData();
             }
         };
         update.start();
-
-        Log.d("TEst",Integer.toString(PM10value));
     }
 
     public void addData(){

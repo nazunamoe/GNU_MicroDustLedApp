@@ -24,8 +24,10 @@ public class HttpReq {
     int PM10;
     int PM25;
     boolean end;
-
+    String stationname;
+    String stationaddr;
     public void RequestStart(){
+        stationname="";
         BufferedReader br = null;
         Log.d(TAG, "접속");
         end = false;
@@ -52,7 +54,6 @@ public class HttpReq {
                 result = result + line + "\n";
             }
 
-            //Log.d(TAG, result);
             try {
                 if (result != null) {
                     DocumentBuilderFactory factory = DocumentBuilderFactory
@@ -65,39 +66,84 @@ public class HttpReq {
                     NodeList Addr = element.getElementsByTagName("addr");
                     NodeList Kilo = element.getElementsByTagName("tm");
                     // 임시값 저장
-                    PM10 = 20;
-                    PM25 = 30;
                     end = true;
                     int n = 1; // 제일 가까운 측정소만 알면 됨.
                     for (int i=0; i<n; i++){
                         Node NameItem = Name.item(i);
                         Node NameText = NameItem.getFirstChild();
                         String NameValue = NameText.getNodeValue();
-                        Log.d("Test",NameValue);
+                        Log.d("Test","addr"+NameValue);
+                        stationname = NameValue;
+                        // 측정소 이름
 
                         Node AddrItem = Addr.item(i);
                         Node AddrText = AddrItem.getFirstChild();
                         String AddrValue = AddrText.getNodeValue();
                         Log.d("Test",AddrValue);
+                        stationaddr = AddrValue;
+                        // 측정소 주소
 
                         Node KiloItem = Kilo.item(i);
                         Node KiloText = KiloItem.getFirstChild();
                         String KiloValue = KiloText.getNodeValue();
                         Log.d("Test",KiloValue);
+                        // 측정소 거리
                         // 디버그용 확인 코드
                     }
+                    try {
+                        String urlstr2 = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?" +
+                                "stationName=" + stationname +
+                                "&dataTerm=month" +
+                                "&pageNo=1" +
+                                "&numOfRows=1" +
+                                "&ServiceKey=cHGmDMDNmdqGMEoyXUfL8f%2BT6%2FUilLRNvHCotJvVNodlMct%2BhWD1uG%2FyOorJ7wnYRPA5myrolanrcoy1GE2%2BWg%3D%3D" +
+                                "&ver=1.3";
+                        URL url2 = new URL(urlstr2);
+                        HttpURLConnection urlconnection2 = (HttpURLConnection) url2.openConnection();
+                        urlconnection2.setRequestMethod("GET");
+                        br = new BufferedReader(new InputStreamReader(urlconnection2.getInputStream(), "UTF-8"));
+                        String result2 = "";
+                        String line2;
+                        while((line2=br.readLine())!=null){
+                            result2 = result2 + line2 + "\n";
+                        }
+                        try{
+                            if(result2 != null){
+                                DocumentBuilderFactory factory2 = DocumentBuilderFactory
+                                        .newInstance();
+                                DocumentBuilder documentBuilder2 = factory2.newDocumentBuilder();
+                                InputStream is2 = new ByteArrayInputStream(result2.getBytes());
+                                Document doc2 = documentBuilder2.parse(is2);
+                                Element element2 = doc2.getDocumentElement();
+                                NodeList PM10Node = element2.getElementsByTagName("pm10Value");
+                                NodeList PM25Node = element2.getElementsByTagName("pm25Value");
+                                int n2 = 1; // 제일 가까운 측정소만 알면 됨.
+                                for (int i=0; i<n2; i++){
+                                    Node PM10Item = PM10Node.item(i);
+                                    Node PM10Text = PM10Item.getFirstChild();
+                                    String PM10Value = PM10Text.getNodeValue();
+                                    Log.d("Test",PM10Value);
+                                    PM10 = Integer.parseInt(PM10Value);
+
+                                    Node PM25Item = PM25Node.item(i);
+                                    Node PM25Text = PM25Item.getFirstChild();
+                                    String PM25Value = PM25Text.getNodeValue();
+                                    Log.d("Test",PM25Value);
+                                    PM25 = Integer.parseInt(PM25Value);
+                                }
+                            }
+                        }catch(Exception e){
+                            Log.d(TAG, "err"+e.toString());
+                        }
+                    }catch (Exception e){
+                        Log.d(TAG, "err"+e.toString());
+                    }
                 }
-
-
-
             }catch(Exception e){
-                Log.d(TAG, "ERROR");
+                Log.d(TAG, "err"+e.toString());
             }
-
         }catch(Exception e){
-            Log.d(TAG, "에러다 이기야"+e.toString());
+            Log.d(TAG, "err"+e.toString());
         }
-
-
     }
 }
