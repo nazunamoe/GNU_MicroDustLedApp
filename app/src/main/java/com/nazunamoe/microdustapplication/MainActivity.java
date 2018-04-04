@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public MyData PM10data;
     public MyData PM25data;
     public MyData Location;
+    public int PM10Status;
+    public int PM25Status;
+    public String PM10String;
+    public String PM25String;
     public int PM10value;
     public int PM25value;
     public String stationname;
@@ -100,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void InitializeData(){
         // 데이터 초기화에 이용
-        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value)+"㎍/㎥",getString(R.string.post_good),getString(R.string.Time),R.mipmap.yuuki);
-        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value)+"㎍/㎥",getString(R.string.post_best),getString(R.string.Time),R.mipmap.asuka);
+        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value)+"㎍/㎥",PM10String,getString(R.string.Time),R.mipmap.yuuki);
+        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value)+"㎍/㎥",PM25String,getString(R.string.Time),R.mipmap.asuka);
         Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),req.stationname,getString(R.string.update_time)+Time,getString(R.string.Time),R.mipmap.chie);
     }
 
@@ -115,10 +119,199 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 stationname = req.stationname;
                 stationaddr = req.stationaddr;
                 Time = req.Time;
+                settingData(PM10value,0);
+                settingData(PM25value,1);
                 InitializeData();
             }
         };
         update.start();
+    }
+
+    /*
+    미세미세 8단계 적용
+
+    PM10
+    최고 : 0~15
+    좋음 : 16~30
+    양호 : 31-40
+    보통 : 41~50
+    나쁨 : 51~75
+    상당히 나쁨 : 76~100
+    매우 나쁨 : 101-150
+    최악 : 151~
+
+    PM2.5
+    최고 : 0~8
+    좋음 : 9~15
+    양호 : 16~20
+    보통 : 21~25
+    나쁨 : 26~37
+    상당히 나쁨 : 38~50
+    매우 나쁨 : 51~75
+    최악 : 76~
+
+    String.xml
+    best - verygood - good - normal - poor - fairlybad - verybad - worst
+    0 1 2 3 4 5 6 7
+     */
+    private void settingData(int value, int PM){
+        switch(PM){ // 0 : PM10 , 1 : PM2.5
+            case 0:{
+                if(value <= 15){
+                    PM10Status = 0;
+                }else if(value <= 30){
+                    PM10Status = 1;
+                }else if(value <= 40){
+                    PM10Status = 2;
+                }else if(value <= 50){
+                    PM10Status = 3;
+                }else if(value <= 75){
+                    PM10Status = 4;
+                }else if(value <= 100){
+                    PM10Status = 5;
+                }else if(value <= 150){
+                    PM10Status = 6;
+                }else{
+                    PM10Status = 7;
+                }
+                break;
+            }
+            case 1:{
+                if(value <= 8){
+                    PM25Status = 0;
+                }else if(value <= 15){
+                    PM25Status = 1;
+                }else if(value <= 20){
+                    PM25Status = 2;
+                }else if(value <= 25){
+                    PM25Status = 3;
+                }else if(value <= 37){
+                    PM25Status = 4;
+                }else if(value <= 50){
+                    PM25Status = 5;
+                }else if(value <= 75){
+                    PM25Status = 6;
+                }else{
+                    PM10Status = 7;
+                }
+                break;
+            }
+        }
+        setGrade(PM10Status,0);
+        setGrade(PM25Status,1);
+    }
+
+    private void setGrade(int grade, int PM){
+        switch(grade){
+            case 0:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_best);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_best);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 1:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_verygood);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_verygood);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 2:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_good);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_good);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 3:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_normal);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_normal);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 4:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_poor);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_poor);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 5:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_fairlybad);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_fairlybad);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 6:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_verybad);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_verybad);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 7:{
+                switch(PM){
+                    case 0:{
+                        PM10String = getString(R.string.post_worst);
+                        break;
+                    }
+                    case 1:{
+                        PM25String = getString(R.string.post_worst);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    private void setData(int grade, int PM){
+
     }
 
     public void addData(){
