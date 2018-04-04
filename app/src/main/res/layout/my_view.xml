@@ -12,10 +12,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:elevation="15dp"
-        card:cardCornerRadius="10dp"
-        card:cardElevation="10dp"
+        card:cardCornerRadius="8dp"
+        card:cardElevation="4dp"
         card:cardUseCompatPadding="true"
-        card:contentPadding="5dp">
+        card:contentPadding="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,47 +23,47 @@
 
             <TextView
                 android:id="@+id/textview"
-                android:layout_width="351dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="0dp"
                 android:layout_marginTop="6dp"
                 android:textColor="@android:color/background_dark"
                 android:textSize="35dp" />
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="98dp"
+                android:layout_width="110dp"
                 android:layout_height="120dp"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textview"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="0dp"
                 android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/post"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textview"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/image"
-                android:textAlignment="viewEnd"
+                android:textAlignment="viewStart"
                 android:textColor="@android:color/background_dark"
                 android:textSize="17dp" />
 
             <TextView
                 android:id="@+id/present"
-                android:layout_width="254dp"
-                android:layout_height="65dp"
+                android:layout_width="281dp"
+                android:layout_height="68dp"
                 android:layout_alignEnd="@+id/textview"
                 android:layout_below="@+id/pre"
                 android:textAlignment="viewEnd"
                 android:textColor="@android:color/background_dark"
-                android:textSize="50dp" />
+                android:textSize="52dp" />
 
             <TextView
                 android:id="@+id/pre"
-                android:layout_width="253dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textview"
                 android:layout_toEndOf="@+id/image"
@@ -73,10 +73,10 @@
 
             <TextView
                 android:id="@+id/additional"
-                android:layout_width="254dp"
+                android:layout_width="283dp"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image"
                 android:layout_alignEnd="@+id/textview"
-                android:layout_below="@+id/present"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18dp" />
 

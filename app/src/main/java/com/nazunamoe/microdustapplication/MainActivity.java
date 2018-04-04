@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public int PM25value;
     public String stationname;
     public String stationaddr;
+    public String Time;
 
     HttpReq req = new HttpReq();
     @Override
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // 데이터 초기화에 이용
         PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value)+"㎍/㎥",getString(R.string.post_good),getString(R.string.Time),R.mipmap.yuuki);
         PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value)+"㎍/㎥",getString(R.string.post_best),getString(R.string.Time),R.mipmap.asuka);
-        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),req.stationname,req.stationaddr,getString(R.string.Time),R.mipmap.chie);
+        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),req.stationname,getString(R.string.update_time)+Time,getString(R.string.Time),R.mipmap.chie);
     }
 
     public void updateData(){
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 PM25value = req.PM25;
                 stationname = req.stationname;
                 stationaddr = req.stationaddr;
+                Time = req.Time;
                 InitializeData();
             }
         };

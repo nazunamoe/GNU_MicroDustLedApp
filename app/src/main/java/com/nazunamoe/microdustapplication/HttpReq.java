@@ -24,6 +24,7 @@ public class HttpReq {
     int PM10;
     int PM25;
     boolean end;
+    String Time;
     String stationname;
     String stationaddr;
     public void RequestStart(){
@@ -117,6 +118,7 @@ public class HttpReq {
                                 Element element2 = doc2.getDocumentElement();
                                 NodeList PM10Node = element2.getElementsByTagName("pm10Value");
                                 NodeList PM25Node = element2.getElementsByTagName("pm25Value");
+                                NodeList dataTimeNode = element2.getElementsByTagName("dataTime");
                                 int n2 = 1; // 제일 가까운 측정소만 알면 됨.
                                 for (int i=0; i<n2; i++){
                                     Node PM10Item = PM10Node.item(i);
@@ -130,6 +132,12 @@ public class HttpReq {
                                     String PM25Value = PM25Text.getNodeValue();
                                     Log.d("Test",PM25Value);
                                     PM25 = Integer.parseInt(PM25Value);
+
+                                    Node dataTimeItem = dataTimeNode.item(i);
+                                    Node dataTimeText = dataTimeItem.getFirstChild();
+                                    String dataTimeValue = dataTimeText.getNodeValue();
+                                    Log.d("Test",dataTimeValue);
+                                    Time = dataTimeValue;
                                 }
                             }
                         }catch(Exception e){
