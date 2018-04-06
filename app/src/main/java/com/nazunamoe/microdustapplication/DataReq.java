@@ -1,5 +1,13 @@
 package com.nazunamoe.microdustapplication;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import org.w3c.dom.Document;
@@ -19,7 +27,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import static android.content.ContentValues.TAG;
 
-public class HttpReq {
+public class DataReq {
 
     int PM10;
     int PM25;
@@ -27,12 +35,18 @@ public class HttpReq {
     String Time;
     String stationname;
     String stationaddr;
+
+    double longitude;
+    double latitude;
+
+
     public void RequestStart(){
+
         stationname="";
         BufferedReader br = null;
-        Log.d(TAG, "접속");
+        Log.d("current", latitude + "," + longitude);
         end = false;
-        GeoPoint in_pt = new GeoPoint(128.639329, 35.262084);
+        GeoPoint in_pt = new GeoPoint(longitude,latitude);
         Log.d("test","geo in : xGeo="  + in_pt.getX() + ", yGeo=" + in_pt.getY());
 
         GeoPoint tm_pt = GeoTrans.convert(GeoTrans.GEO, GeoTrans.TM, in_pt);
@@ -41,8 +55,8 @@ public class HttpReq {
         // 이곳에서 현재 위경도를 GeoPoint를 이용해서 tmX, tmY좌표로 변환 후 URL요청을 실시한다.
         try {
             String urlstr = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?" +
-                    "tmX=349107.0004417976" +
-                    "&tmY=197097.48881956766" +
+                    "tmX=" + tm_pt.getX() +
+                    "&tmY=" +tm_pt.getY() +
                     "&pageNo=1&numOfRows=10&" +
                     "ServiceKey=cHGmDMDNmdqGMEoyXUfL8f%2BT6%2FUilLRNvHCotJvVNodlMct%2BhWD1uG%2FyOorJ7wnYRPA5myrolanrcoy1GE2%2BWg%3D%3D";
             URL url = new URL(urlstr);
@@ -119,24 +133,65 @@ public class HttpReq {
                                 NodeList PM10Node = element2.getElementsByTagName("pm10Value");
                                 NodeList PM25Node = element2.getElementsByTagName("pm25Value");
                                 NodeList dataTimeNode = element2.getElementsByTagName("dataTime");
-                                int n2 = 1; // 제일 가까운 측정소만 알면 됨.
+                                int n2 = 1;
+
+                                String temppm10;
+                                String temppm25;
+
                                 for (int i=0; i<n2; i++){
                                     Node PM10Item = PM10Node.item(i);
                                     Node PM10Text = PM10Item.getFirstChild();
-                                    String PM10Value = PM10Text.getNodeValue();
+                                    String PM10Value="";
+                                    temppm10= PM10Text.getNodeValue();
+                                    Log.d("Test",temppm10);
+                                    if(temppm10 == "-"){
+                                        // do nothing
+                                    }else{
+                                        switch(i){
+                                            case 0:{
+                                                PM10Value = temppm10;
+                                                PM10 = Integer.parseInt(PM10Value);
+                                                break;
+                                            }
+                                            case 1:{
+                                                if(temppm10 == "-"){
+                                                    PM10Value = temppm10;
+                                                    PM10 = Integer.parseInt(PM10Value);
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
                                     Log.d("Test",PM10Value);
-                                    PM10 = Integer.parseInt(PM10Value);
 
                                     Node PM25Item = PM25Node.item(i);
                                     Node PM25Text = PM25Item.getFirstChild();
-                                    String PM25Value = PM25Text.getNodeValue();
+                                    String PM25Value="";
+                                    temppm25 = PM25Text.getNodeValue();
+                                    if(temppm25 == "-"){
+                                        // do nothing
+                                    }else{
+                                        switch(i){
+                                            case 0:{
+                                                PM25Value = temppm25;
+                                                PM25 = Integer.parseInt(PM25Value);
+                                                break;
+                                            }
+                                            case 1:{
+                                                if(temppm25 == "-"){
+                                                    PM25Value = temppm25;
+                                                    PM25 = Integer.parseInt(PM25Value);
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
                                     Log.d("Test",PM25Value);
-                                    PM25 = Integer.parseInt(PM25Value);
 
                                     Node dataTimeItem = dataTimeNode.item(i);
                                     Node dataTimeText = dataTimeItem.getFirstChild();
                                     String dataTimeValue = dataTimeText.getNodeValue();
-                                    Log.d("Test",dataTimeValue);
+                                    Log.d("Test","time"+dataTimeValue);
                                     Time = dataTimeValue;
                                 }
                             }
