@@ -52,7 +52,7 @@
             android:defaultValue="1"
             android:entries="@array/normalledmodes"
             android:entryValues="@array/normalledmodes"
-            android:key="pm10mode"
+            android:key="normalmode"
             android:title="@string/usermodesettings" />
     </PreferenceCategory>
 

@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/textview"
-                android:layout_width="380dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/post"
-                android:layout_width="380dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/image"
@@ -55,8 +55,8 @@
 
             <TextView
                 android:id="@+id/present"
-                android:layout_width="281dp"
-                android:layout_height="68dp"
+                android:layout_width="274dp"
+                android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/textview"
                 android:layout_below="@+id/pre"
                 android:textAlignment="viewEnd"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/additional"
-                android:layout_width="280dp"
+                android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/image"
                 android:layout_alignEnd="@+id/textview"
