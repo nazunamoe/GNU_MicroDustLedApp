@@ -2,11 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/bluetooth">
         <Preference
-            android:id="@+id/ConnectBluetooth"
-            android:key="connect_bluetooth"
-            android:title="@string/connect_bluetooth">
-        </Preference>
-        <Preference
             android:id="@+id/StatusBluetooth"
             android:key="status_bluetooth"
             android:enabled="false"
