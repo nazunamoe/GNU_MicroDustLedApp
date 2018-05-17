@@ -2,6 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/bluetooth">
         <Preference
+            android:key="connect_bluetooth"
+            android:summaryOff="@string/bluetooth_disconnected"
+            android:summaryOn="@string/bluetooth_connected"
+            android:title="@string/connect_bluetooth" />
+        <Preference
+            android:key="save_settings"
+            android:title="@string/save" />
+        <Preference
             android:id="@+id/StatusBluetooth"
             android:key="status_bluetooth"
             android:enabled="false"
@@ -9,46 +17,116 @@
             android:summary="@string/bluetooth_disconnected" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm10ledsettings">
-       <Preference
-            android:id="@+id/StatusPM10"
-            android:key="status_pm10"
-            android:enabled="false"
-            android:title="@string/currentstatus"
-            android:summary="@string/bluetooth_disconnected" />
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/dustledmodes"
-            android:entryValues="@array/dustledmodes"
-            android:key="pm10mode"
-            android:title="@string/usermodesettings" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-1"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-2"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-3"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-4"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-5"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-6"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-7"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color1-8"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-1"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-2"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-3"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-4"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-5"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-6"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-7"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm10_color2-8"
+            android:title="string"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm25ledsettings">
-        <Preference
-            android:id="@+id/StatusPM25"
-            android:key="status_pm25"
-            android:enabled="false"
-            android:title="@string/currentstatus"
-            android:summary="@string/bluetooth_disconnected" />
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/dustledmodes"
-            android:entryValues="@array/dustledmodes"
-            android:key="pm25mode"
-            android:title="@string/usermodesettings" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25-color1-1"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-2"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-3"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-4"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-5"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-6"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-7"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color1-8"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-1"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-2"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-3"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-4"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-5"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-6"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-7"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="pm25_color2-8"
+            android:title="string"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/normalledsettings">
-        <Preference
-            android:id="@+id/StatusNormal"
-            android:key="status_normal"
-            android:enabled="false"
-            android:title="@string/currentstatus"
-            android:summary="@string/bluetooth_disconnected" />
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/normalledmodes"
-            android:entryValues="@array/normalledmodes"
-            android:key="normalmode"
-            android:title="@string/usermodesettings" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="normal_color_1"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="normal_color_2"
+            android:title="string"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:defaultValue="@color/colorPrimary"
+            android:key="normal_color_3"
+            android:title="string"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
