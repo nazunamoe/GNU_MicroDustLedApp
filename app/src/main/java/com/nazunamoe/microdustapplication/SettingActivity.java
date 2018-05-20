@@ -177,7 +177,6 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
                 break;
             }
         }
-        Log.d("color", Dataset.getpreset(1,1).red+ Dataset.getpreset(1,1).green+ Dataset.getpreset(1,1).blue+"");
         editor.commit();
     }
     public static class SettingsFragment extends PreferenceFragment
@@ -195,6 +194,7 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Log.d("Fuck","BLUETOOTH!");
+
                     // 이 부분에서 블루투스에 연결하는 새로운 액티비티를 생성 후, 소켓을 연결하여 값을 받아와야한다.
                     // 받아온 값들을 Data 클래스에 저장 후, 아래의 초기화 메소드를 돌려서 각 값을 초기화시킨다.
                     return false;

@@ -56,5 +56,6 @@
 
     <string name="save">Save settings</string>
     <string name="title_activity_assholeactivity">Settings</string>
+    <string name="title_activity_bluetooth_activiry">BluetoothActiviry</string>
 
 </resources>
