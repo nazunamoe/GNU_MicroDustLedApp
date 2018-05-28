@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/bluetooth">
-        <Preference
+        <PreferenceScreen
             android:key="connect_bluetooth"
             android:summaryOff="@string/bluetooth_disconnected"
             android:summaryOn="@string/bluetooth_connected"
-            android:title="@string/connect_bluetooth" />
+            android:title="@string/connect_bluetooth" >
+            <intent android:targetPackage="com.nazunamoe.microdustapplication"
+                android:targetClass="com.nazunamoe.microdustapplication.TCPActivity">
+            </intent>
+        </PreferenceScreen>
         <Preference
             android:key="save_settings"
             android:title="@string/save" />

@@ -190,26 +190,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         update.start();
     }
 
-
-    public void updateData2(){
-        // 이곳에 측정 데이터를 받아오는 메서드 추가
-        Thread update = new Thread(){
-            public void run(){
-                if(req.latitude==0){
-
-                }else{
-                    req.RequestStart();
-                    PM10value = req.PM10;
-                    PM25value = req.PM25;
-                    stationname = req.stationname;
-                    stationaddr = req.stationaddr;
-                    Time = req.Time;
-                    settingData(PM10value,0);
-                    settingData(PM25value,1); }
-            }
-        };
-        update.start();
-    }
     /*
     미세미세 8단계 적용
 
