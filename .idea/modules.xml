@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\nazunamoe\Documents\gnu_microdustapp\MicroDustApplication.iml" filepath="C:\Users\nazunamoe\Documents\gnu_microdustapp\MicroDustApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MicroDustApplication.iml" filepath="$PROJECT_DIR$/MicroDustApplication.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/gnu_microdustapp/MicroDustApplication.iml" filepath="$USER_HOME$/Documents/gnu_microdustapp/MicroDustApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/gnu_microdustapp.iml" filepath="$PROJECT_DIR$/gnu_microdustapp.iml" />
     </modules>
