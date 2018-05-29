@@ -2,6 +2,12 @@
     <string name="app_name">Fine Dust Application</string>
     <string name="led_name">Fine Dust Check Led Settings</string>
 
+    <string name="permission_rejected">Permission rejected</string>
+
+    <string name="tedpermission_setting">Setting</string>
+    <string name="tedpermission_close">Close</string>
+    <string name="tedpermission_confirm">Confirm</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -39,8 +45,8 @@
     <string name="title_activity_led_settings">Settings</string>
 
     <string name="bluetooth">Bluetooth</string>
-    <string name="connect_bluetooth">Connect Led via Bluetooth</string>
-    <string name="check_bluetooth">Check bluetooth status</string>
+    <string name="ip_config">IP Config</string>
+    <string name="check_tcp">Check bluetooth status</string>
     <string name="bluetooth_disconnected">Bluetooth disconnected</string>
     <string name="bluetooth_connected">Bluetooth connected</string>
 
@@ -81,5 +87,7 @@
     <string name="normaluserset1">Normal user set 1</string>
     <string name="normaluserset2">Normal user set 2</string>
     <string name="normaluserset3">Normal user set 3</string>
+
+    <string name="error_on_tcp">Check ip address and port number</string>
 
 </resources>

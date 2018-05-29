@@ -190,17 +190,6 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
                 pickPreferenceObject(getPreferenceScreen().getPreference(i));
             }
 
-            Preference connect = findPreference("connect_bluetooth");
-            connect.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Log.d("Fuck","BLUETOOTH!");
-                    // 이 부분에서 블루투스에 연결하는 새로운 액티비티를 생성 후, 소켓을 연결하여 값을 받아와야한다.
-                    // 받아온 값들을 Data 클래스에 저장 후, 아래의 초기화 메소드를 돌려서 각 값을 초기화시킨다.
-                    return false;
-                }
-            });
-
             Preference save = findPreference("save_settings");
             save.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -211,8 +200,7 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
             }); //버튼 두개 리스너 설정할것
 
             ColorPreference test = (ColorPreference) findPreference("pm10_color1-1");
-            test.saveValue(Color.rgb(255,255,255));
-            // 색상부분 초기화 메소드임, 참고
+
         }
         private void pickPreferenceObject(Preference p) {
             if (p instanceof PreferenceCategory) {

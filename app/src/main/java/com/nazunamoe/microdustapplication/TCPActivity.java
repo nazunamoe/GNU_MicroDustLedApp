@@ -3,10 +3,13 @@ package com.nazunamoe.microdustapplication;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,30 +32,19 @@ public class TCPActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
 
         connectBtn = (Button) findViewById(R.id.buttonConnect);
-        clearBtn = (Button) findViewById(R.id.buttonClear);
         editTextAddress = (EditText) findViewById(R.id.addressText);
         editTextPort = (EditText) findViewById(R.id.portText);
-        recieveText = (TextView) findViewById(R.id.textViewReciev);
-        messageText = (EditText) findViewById(R.id.messageText);
 
         //connect 버튼 클릭
         connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyClientTask myClientTask = new MyClientTask(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), messageText.getText().toString());
+                MyClientTask myClientTask = new MyClientTask(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), "SEX!!!");
                 myClientTask.execute();
                 //messageText.setText("");
             }
         });
 
-        //clear 버튼 클릭
-        clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recieveText.setText("");
-                messageText.setText("");
-            }
-        });
     }
 
     //
@@ -118,7 +110,13 @@ public class TCPActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            recieveText.setText(response);
+
+            if(recieveText == null){
+                Toast.makeText(TCPActivity.this, R.string.error_on_tcp, Toast.LENGTH_SHORT).show();
+            }else{
+                // 파이로부터 받아온 정보를 처리하는 부분을 이쪽에 추가한다.
+            }
+
             super.onPostExecute(result);
         }
     }
