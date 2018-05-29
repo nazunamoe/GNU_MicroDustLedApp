@@ -72,28 +72,21 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             myDataset = new ArrayList<>();
             mAdapter = new MyAdapter(myDataset);
             mRecyclerView.setAdapter(mAdapter);
-            updateData();
             addData();
         }
         public void onProviderDisabled(String provider) {
             // Disabled시
             Log.d("test", "onProviderDisabled, provider:" + provider);
-            req.longitude=longitude;
-            req.latitude=latitude;
         }
 
         public void onProviderEnabled(String provider) {
             // Enabled시
             Log.d("test", "onProviderEnabled, provider:" + provider);
-            req.longitude=longitude;
-            req.latitude=latitude;
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
             // 변경시
             Log.d("test", "onStatusChanged, provider:" + provider + ", status:" + status + " ,Bundle:" + extras);
-            req.longitude=longitude;
-            req.latitude=latitude;
         }
     };
 
