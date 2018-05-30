@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/bluetooth">
+    <PreferenceCategory android:title="@string/ip">
         <PreferenceScreen
             android:key="ip_config"
-            android:summaryOff="@string/bluetooth_disconnected"
-            android:summaryOn="@string/bluetooth_connected"
+            android:summaryOff="@string/tcp_disconnected"
+            android:summaryOn="@string/tcp_connected"
             android:title="@string/ip_config" >
             <intent android:targetPackage="com.nazunamoe.microdustapplication"
                 android:targetClass="com.nazunamoe.microdustapplication.TCPActivity">

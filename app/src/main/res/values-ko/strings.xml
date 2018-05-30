@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">미세 먼지 어플리케이션</string>
+    <string name="maker_name">2012010930 \n 지평강</string>
+    <string name="led_name">미세 먼지 확인 LED 설정</string>
+
+    <string name="permission_rejected">권한이 거부되었습니다.</string>
+    <string name="permission_accpeted">권한이 허용되었습니다.</string>
+
+    <string name="tedpermission_setting">설정</string>
+    <string name="tedpermission_close">닫기</string>
+    <string name="tedpermission_confirm">확인</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">LED 설정</string>
+
+    <string name="Menu_1">Email / About</string>
+    <string name="Menu_2">설정</string>
+
+    <string name="normal_led_settings">LED 설정</string>
+    <string name="email">개발자에게 E-Mail 보내기</string>
+    <string name="about">앱에 관하여</string>
+
+    <string name="pre">현재 수치는</string>
+    <string name="present"></string>
+
+    <string name="PM10">미세 먼지 (PM10)</string>
+    <string name="PM25">초미세 먼지 (PM2.5)</string>
+
+    <string name="Time">갱신 시각</string>
+
+    <string name="Addr">측정소 위치</string>
+    <string name="AddrPre">측정소 위치는</string>
+
+    <string name="post_worst">현재 최악 상태입니다.</string>
+    <string name="post_verybad">현재 매우 나쁨 상태입니다.</string>
+    <string name="post_fairlybad">현재 상당히 나쁨 상태입니다.</string>
+    <string name="post_poor">현재 나쁨 상태입니다.</string>
+    <string name="post_normal">현재 보통 상태입니다.</string>
+    <string name="post_good">현재 양호 상태입니다.</string>
+    <string name="post_verygood">현재 매우 양호 상태입니다.</string>
+    <string name="post_best">현재 최고 상태입니다.</string>
+
+    <string name="update_time">갱신 시각 : </string>
+
+    <string name="title_activity_led_settings">설정</string>
+
+    <string name="ip">IP</string>
+    <string name="ip_config">IP 설정</string>
+    <string name="check_tcp">연결 상태 확인</string>
+    <string name="tcp_disconnected">TCP 연결 끊어짐</string>
+    <string name="tcp_connected">TCP 연결됨</string>
+
+    <string name="choosemode">이 모드 사용</string>
+
+    <string name="pm10ledsettings1">PM10 LED 모드 설정 - 1</string>
+    <string name="pm25ledsettings1">PM2.5 LED 모드 설정 - 1</string>
+    <string name="pm10ledsettings2">PM10 LED 모드 설정 - 2</string>
+    <string name="pm25ledsettings2">PM2.5 LED 모드 설정 - 2</string>
+    <string name="normalledsettings">일반 LED 모드 설정</string>
+
+    <string name="currentstatus">LED 색상 설정</string>
+    <string name="usermodesettings">사용자 정의 모드 선택</string>
+    <string name="usersettings">일반 LED 색상 설정</string>
+
+    <string name="save">설정값 저장</string>
+
+    <string name="userset1.1">사용자 정의 세트 1 - 1</string>
+    <string name="userset1.2">사용자 정의 세트 1 - 2</string>
+    <string name="userset1.3">사용자 정의 세트 1 - 3</string>
+    <string name="userset1.4">사용자 정의 세트 1 - 4</string>
+    <string name="userset1.5">사용자 정의 세트 1 - 5</string>
+    <string name="userset1.6">사용자 정의 세트 1 - 6</string>
+    <string name="userset1.7">사용자 정의 세트 1 - 7</string>
+    <string name="userset1.8">사용자 정의 세트 1 - 8</string>
+
+    <string name="userset2.1">사용자 정의 세트 2 - 1</string>
+    <string name="userset2.2">사용자 정의 세트 2 - 2</string>
+    <string name="userset2.3">사용자 정의 세트 2 - 3</string>
+    <string name="userset2.4">사용자 정의 세트 2 - 4</string>
+    <string name="userset2.5">사용자 정의 세트 2 - 5</string>
+    <string name="userset2.6">사용자 정의 세트 2 - 6</string>
+    <string name="userset2.7">사용자 정의 세트 2 - 7</string>
+    <string name="userset2.8">사용자 정의 세트 2 - 8</string>
+
+    <string name="normaluserset1">사용자 정의 세트 1</string>
+    <string name="normaluserset2">사용자 정의 세트 2</string>
+    <string name="normaluserset3">사용자 정의 세트 3</string>
+
+    <string name="error_on_tcp">IP 주소와 포트 번호, 또는 기기의 상태를 확인하십시오.</string>
+
+</resources>

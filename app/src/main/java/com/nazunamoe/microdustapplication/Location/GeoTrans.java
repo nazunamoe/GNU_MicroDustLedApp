@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.nazunamoe.microdustapplication;
+package com.nazunamoe.microdustapplication.Location;
 
 /**
  * @author aquilegia

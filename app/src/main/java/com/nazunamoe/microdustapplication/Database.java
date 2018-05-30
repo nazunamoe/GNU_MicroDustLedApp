@@ -1,15 +1,20 @@
 package com.nazunamoe.microdustapplication;
 
+import android.app.Application;
 import android.util.Log;
 
-public class Data {
+/**
+ * Created by nazunamoe on 2018-05-30.
+ */
+
+public class Database{
     LEDColor[] custom = new LEDColor[3];
     LEDColor[] preset1 = new LEDColor[8];
     LEDColor[] preset2 = new LEDColor[8];
     LEDColor[] preset3 = new LEDColor[8];
     LEDColor[] preset4 = new LEDColor[8];
-    int longitude;
-    int latitude;
+    double longitude;
+    double latitude;
 
     public LEDColor getpreset(int select, int number){
         if(select == 0) {
@@ -181,5 +186,13 @@ public class Data {
             }
         }
     }
-}
 
+    private static Database instance = null;
+
+    public static synchronized Database getInstance(){
+        if(null == instance){
+            instance = new Database();
+        }
+        return instance;
+    }
+}

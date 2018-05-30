@@ -22,7 +22,7 @@ public class TCPActivity extends AppCompatActivity {
     TextView recieveText;
     EditText editTextAddress, editTextPort, messageText;
     Button connectBtn, clearBtn;
-
+    Database database = Database.getInstance();
     Socket socket = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +39,12 @@ public class TCPActivity extends AppCompatActivity {
         connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyClientTask myClientTask = new MyClientTask(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), "SEX!!!");
+                MyClientTask myClientTask = new MyClientTask(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), "START"+database.longitude+" "+database.latitude);
                 myClientTask.execute();
-                //messageText.setText("");
             }
         });
-
     }
 
-    //
     public class MyClientTask extends AsyncTask<Void, Void, Void> {
         String dstAddress;
         int dstPort;
@@ -85,7 +82,6 @@ public class TCPActivity extends AppCompatActivity {
                     byteArrayOutputStream.write(buffer, 0, bytesRead);
                     response += byteArrayOutputStream.toString("UTF-8");
                 }
-                response = "서버의 응답: " + response;
 
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
@@ -110,15 +106,12 @@ public class TCPActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-
             if(recieveText == null){
                 Toast.makeText(TCPActivity.this, R.string.error_on_tcp, Toast.LENGTH_SHORT).show();
             }else{
                 // 파이로부터 받아온 정보를 처리하는 부분을 이쪽에 추가한다.
             }
-
             super.onPostExecute(result);
         }
     }
-
 }

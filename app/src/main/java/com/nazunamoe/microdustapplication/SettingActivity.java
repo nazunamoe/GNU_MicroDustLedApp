@@ -15,7 +15,7 @@ import com.jaredrummler.android.colorpicker.ColorPreference;
 
 public class SettingActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
     SharedPreferences sharedPref;
-    Data Dataset = new Data();
+    Database Dataset = Database.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +191,7 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
             }
 
             Preference save = findPreference("save_settings");
+            save.setEnabled(false);
             save.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {

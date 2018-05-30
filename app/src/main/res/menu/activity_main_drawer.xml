@@ -11,7 +11,7 @@
         </menu>
     </item>
 
-    <item android:title="@string/Menu_2">
+    <item android:title="@string/Menu_1">
         <menu>
             <item
                 android:id="@+id/nav_email"

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fine Dust Application</string>
+    <string name="maker_name">2012010930 \n PyeongKang Ji</string>
     <string name="led_name">Fine Dust Check Led Settings</string>
 
     <string name="permission_rejected">Permission rejected</string>
@@ -13,10 +14,10 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="Menu_1">Led Settings</string>
-    <string name="Menu_2">Email / About</string>
+    <string name="Menu_1">Email / About</string>
+    <string name="Menu_2">Settings</string>
 
-    <string name="normal_led_settings">Led Settings</string>
+    <string name="normal_led_settings">LED Settings</string>
     <string name="email">Send Email to Developer</string>
     <string name="about">About app</string>
 
@@ -44,11 +45,11 @@
 
     <string name="title_activity_led_settings">Settings</string>
 
-    <string name="bluetooth">Bluetooth</string>
+    <string name="ip">IP</string>
     <string name="ip_config">IP Config</string>
-    <string name="check_tcp">Check bluetooth status</string>
-    <string name="bluetooth_disconnected">Bluetooth disconnected</string>
-    <string name="bluetooth_connected">Bluetooth connected</string>
+    <string name="check_tcp">Check TCP status</string>
+    <string name="tcp_disconnected">TCP disconnected</string>
+    <string name="tcp_connected">TCP connected</string>
 
     <string name="choosemode">Use this mode</string>
 
@@ -63,8 +64,6 @@
     <string name="usersettings">Normal LED color setting</string>
 
     <string name="save">Save settings</string>
-    <string name="title_activity_assholeactivity">Settings</string>
-    <string name="title_activity_bluetooth_activiry">BluetoothActiviry</string>
     
     <string name="userset1.1">User set 1 - 1</string>
     <string name="userset1.2">User set 1 - 2</string>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dustledmodes">
+        <item>프리셋 1</item>
+        <item>프리셋 2</item>
+        <item>프리셋 3</item>
+        <item>프리셋 4</item>
+        <item>프리셋 5</item>
+        <item>User custom</item>
+    </string-array>
+
+    <string-array name="normalledmodes">
+        <item>색상 1</item>
+        <item>색상 2</item>
+        <item>색상 3</item>
+    </string-array>
+</resources>

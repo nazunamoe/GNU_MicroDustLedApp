@@ -1,14 +1,9 @@
 package com.nazunamoe.microdustapplication;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+
+import com.nazunamoe.microdustapplication.Location.GeoPoint;
+import com.nazunamoe.microdustapplication.Location.GeoTrans;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -1,6 +1,7 @@
 package com.nazunamoe.microdustapplication;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,14 +10,18 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class TCPService extends AsyncTask<Void, Void, Void> {
+/**
+ * Created by nazunamoe on 2018-05-30.
+ */
+
+public class MyClientTask extends AsyncTask<Void, Void, Void> {
     String dstAddress;
     int dstPort;
     String response = "";
     String myMessage = "";
 
     //constructor
-    TCPService(String addr, int port, String message){
+    MyClientTask(String addr, int port, String message) {
         dstAddress = addr;
         dstPort = port;
         myMessage = message;
@@ -38,15 +43,14 @@ public class TCPService extends AsyncTask<Void, Void, Void> {
             byte[] buffer = new byte[1024];
             int bytesRead;
             InputStream inputStream = socket.getInputStream();
-            /*
-             * notice:
-             * inputStream.read() will block if no data return
-             */
-            while ((bytesRead = inputStream.read(buffer)) != -1){
+                /*
+                 * notice:
+                 * inputStream.read() will block if no data return
+                 */
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
                 byteArrayOutputStream.write(buffer, 0, bytesRead);
                 response += byteArrayOutputStream.toString("UTF-8");
             }
-            response = "서버의 응답: " + response;
 
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
@@ -56,8 +60,8 @@ public class TCPService extends AsyncTask<Void, Void, Void> {
             // TODO Auto-generated catch block
             e.printStackTrace();
             response = "IOException: " + e.toString();
-        }finally{
-            if(socket != null){
+        } finally {
+            if (socket != null) {
                 try {
                     socket.close();
                 } catch (IOException e) {
@@ -71,7 +75,7 @@ public class TCPService extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
-        // 받아오는 데이터를 처리하는 부분, 설정값의 색상을 변경하는 메소드를 이곳에 추가하자
+        // 연결이 종료되었으면 이부분에서 파이로부터 END 신호를 받고 연결을 종료한다.
         super.onPostExecute(result);
     }
 }

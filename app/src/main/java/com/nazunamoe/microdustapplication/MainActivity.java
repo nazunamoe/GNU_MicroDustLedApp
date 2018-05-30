@@ -6,7 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,8 +25,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
-    //MyActivity 시작
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -45,6 +43,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     String stationname;
     String stationaddr;
     String Time;
+    Database database = Database.getInstance();
 
     int PM10image = R.drawable.normal;
     int PM25image = R.drawable.normal;
@@ -61,6 +60,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             Log.d("test", "onLocationChanged, location:" + location);
             longitude = location.getLongitude(); //경도
             latitude = location.getLatitude();   //위도
+            database.longitude = location.getLongitude();
+            database.latitude = location.getLatitude();
             double altitude = location.getAltitude();   //고도
             float accuracy = location.getAccuracy();    //정확도
             String provider = location.getProvider();   //위치제공자
@@ -175,6 +176,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 stationname = req.stationname;
                 stationaddr = req.stationaddr;
                 Time = req.Time;
+
                 settingData(PM10value,0);
                 settingData(PM25value,1);
                 InitializeData();}
@@ -395,7 +397,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.normal_led_settings) {
-            intent = new Intent(Main.this, SettingActivity.class);
+            intent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
 
@@ -407,7 +409,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
