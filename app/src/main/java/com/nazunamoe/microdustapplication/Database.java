@@ -1,6 +1,7 @@
 package com.nazunamoe.microdustapplication;
 
 import android.app.Application;
+import android.graphics.Color;
 import android.util.Log;
 
 /**
@@ -15,6 +16,7 @@ public class Database{
     LEDColor[] preset4 = new LEDColor[8];
     double longitude;
     double latitude;
+    String stationname;
 
     public LEDColor getpreset(int select, int number){
         if(select == 0) {
@@ -178,11 +180,11 @@ public class Database{
             }
         }else if(select == 4) {
             if(number == 0) {
-                preset1[0] = value;
+                custom[0] = value;
             }else if(number == 1) {
-                preset1[1] = value;
+                custom[1] = value;
             }else if(number == 2) {
-                preset1[2] = value;
+                custom[2] = value;
             }
         }
     }
@@ -194,5 +196,23 @@ public class Database{
             instance = new Database();
         }
         return instance;
+    }
+
+    public int getColor(int select, int number){
+        Log.d("test","Select : "+select+ " Number : "+number);
+        return getIntFromColor(getpreset(select,number).red,getpreset(select,number).blue,getpreset(select,number).green);
+
+    }
+
+    public int getIntFromColor(float Red, float Green, float Blue){
+        int R = Math.round(255 * Red);
+        int G = Math.round(255 * Green);
+        int B = Math.round(255 * Blue);
+
+        R = (R << 16) & 0x00FF0000;
+        G = (G << 8) & 0x0000FF00;
+        B = B & 0x000000FF;
+
+        return 0xFF000000 | R | G | B;
     }
 }

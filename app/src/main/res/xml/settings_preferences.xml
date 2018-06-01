@@ -68,7 +68,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm25ledsettings1">
         <com.jaredrummler.android.colorpicker.ColorPreference
-            android:key="pm25-color1-1"
+            android:key="pm25_color1-1"
             android:title="@string/userset1.1" />
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-2"

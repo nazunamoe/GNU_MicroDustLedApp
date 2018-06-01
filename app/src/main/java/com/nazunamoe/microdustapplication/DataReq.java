@@ -33,7 +33,7 @@ public class DataReq {
 
     double longitude;
     double latitude;
-
+    Database database = Database.getInstance();
 
     public void RequestStart(){
 
@@ -84,6 +84,7 @@ public class DataReq {
                         String NameValue = NameText.getNodeValue();
                         Log.d("Test","addr"+NameValue);
                         stationname = NameValue;
+                        database.stationname = stationname;
                         // 측정소 이름
 
                         Node AddrItem = Addr.item(i);

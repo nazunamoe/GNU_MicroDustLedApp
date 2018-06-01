@@ -398,6 +398,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent;
         if (id == R.id.normal_led_settings) {
             intent = new Intent(MainActivity.this, SettingActivity.class);
+            if(database.stationname==null){
+                myDataset = new ArrayList<>();
+                mAdapter = new MyAdapter(myDataset);
+                mRecyclerView.setAdapter(mAdapter);
+                updateData();
+                addData();
+            }
             startActivity(intent);
         } else if (id == R.id.nav_email) {
 

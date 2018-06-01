@@ -22,4 +22,6 @@ public class LEDColor {
     public Color makecolor(int red, int green, int blue){
         return Color.valueOf(red,green,blue);
     }
+
+
 }

@@ -14,14 +14,14 @@ import java.net.UnknownHostException;
  * Created by nazunamoe on 2018-05-30.
  */
 
-public class MyClientTask extends AsyncTask<Void, Void, Void> {
+public class Client extends AsyncTask<Void, Void, Void> {
     String dstAddress;
     int dstPort;
     String response = "";
     String myMessage = "";
 
     //constructor
-    MyClientTask(String addr, int port, String message) {
+    Client(String addr, int port, String message) {
         dstAddress = addr;
         dstPort = port;
         myMessage = message;
@@ -37,21 +37,7 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
             //송신
             OutputStream out = socket.getOutputStream();
             out.write(myMessage.getBytes());
-
-            //수신
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            InputStream inputStream = socket.getInputStream();
-                /*
-                 * notice:
-                 * inputStream.read() will block if no data return
-                 */
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                byteArrayOutputStream.write(buffer, 0, bytesRead);
-                response += byteArrayOutputStream.toString("UTF-8");
-            }
-
+            
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -73,9 +59,4 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
-    @Override
-    protected void onPostExecute(Void result) {
-        // 연결이 종료되었으면 이부분에서 파이로부터 END 신호를 받고 연결을 종료한다.
-        super.onPostExecute(result);
-    }
 }
