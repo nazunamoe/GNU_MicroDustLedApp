@@ -2,10 +2,13 @@ package com.nazunamoe.microdustapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -43,12 +46,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String stationname;
     String stationaddr;
     String Time;
-    Database database = Database.getInstance();
 
     int PM10image = R.drawable.normal;
     int PM25image = R.drawable.normal;
 
     DataReq req = new DataReq();
+
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
 
     public final LocationListener mLocationListener = new LocationListener() {
         double longitude;
@@ -60,11 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.d("test", "onLocationChanged, location:" + location);
             longitude = location.getLongitude(); //경도
             latitude = location.getLatitude();   //위도
-            database.longitude = location.getLongitude();
-            database.latitude = location.getLatitude();
-            double altitude = location.getAltitude();   //고도
-            float accuracy = location.getAccuracy();    //정확도
-            String provider = location.getProvider();   //위치제공자
             //Gps 위치제공자에 의한 위치변화. 오차범위가 좁다.
             //Network 위치제공자에 의한 위치변화
             //Network 위치는 Gps에 비해 정확도가 많이 떨어진다.
@@ -92,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     };
 
     @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // LocationManager 객체를 얻어온다
@@ -105,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 100, // 통지사이의 최소 시간간격 (miliSecond)
                 1, // 통지사이의 최소 변경거리 (m)
                 mLocationListener);
-
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.my_recycler_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -158,9 +162,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void InitializeData(){
         // 데이터 초기화에 이용
-        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),Integer.toString(PM10value)+"㎍/㎥",PM10String,getString(R.string.Time),PM10image);
-        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),Integer.toString(PM25value)+"㎍/㎥",PM25String,getString(R.string.Time),PM25image);
-        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),req.stationname,getString(R.string.update_time)+Time,getString(R.string.Time),R.drawable.station);
+        settingData(Integer.parseInt(preferences.getString("pm10","0")),0);
+        settingData(Integer.parseInt(preferences.getString("pm25","0")),1);
+        PM10data=new MyData(getString(R.string.PM10),getString(R.string.pre),preferences.getString("pm10","0")+"㎍/㎥",PM10String,getString(R.string.Time),PM10image);
+        PM25data=new MyData(getString(R.string.PM25),getString(R.string.pre),preferences.getString("pm25","0")+"㎍/㎥",PM25String,getString(R.string.Time),PM25image);
+        Location=new MyData(getString(R.string.Addr),getString(R.string.AddrPre),preferences.getString("stationname","0"),getString(R.string.update_time)+preferences.getString("time","0"),getString(R.string.Time),R.drawable.station);
     }
 
     public void updateData(){
@@ -274,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setGrade(PM10Status,0);
         setGrade(PM25Status,1);
     }
+
+
 
     private void setGrade(int grade, int PM){
         switch(grade){
@@ -398,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent;
         if (id == R.id.normal_led_settings) {
             intent = new Intent(MainActivity.this, SettingActivity.class);
-            if(database.stationname==null){
+            if(preferences.getString("stationname","null").equals("null")){
                 myDataset = new ArrayList<>();
                 mAdapter = new MyAdapter(myDataset);
                 mRecyclerView.setAdapter(mAdapter);
@@ -470,7 +478,6 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.mpreView.setText(mDataset.get(position).pre);
         holder.mpresentView.setText(mDataset.get(position).present);
         holder.mpostView.setText(mDataset.get(position).post);
-       // holder.madditionalView.setText(mDataset.get(position).additional);
         holder.mImageView.setImageResource(mDataset.get(position).img);
     }
 

@@ -10,125 +10,156 @@
                 android:targetClass="com.nazunamoe.microdustapplication.TCPActivity">
             </intent>
         </PreferenceScreen>
-        <Preference
-            android:key="save_settings"
-            android:title="@string/save" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm10ledsettings1">
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-1"
-            android:title="@string/userset1.1" />
+            android:title="@string/userset1.1"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-2"
-            android:title="@string/userset1.2" />
+            android:title="@string/userset1.2"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-3"
-            android:title="@string/userset1.3" />
+            android:title="@string/userset1.3"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-4"
-            android:title="@string/userset1.4" />
+            android:title="@string/userset1.4"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-5"
-            android:title="@string/userset1.5" />
+            android:title="@string/userset1.5"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-6"
-            android:title="@string/userset1.6" />
+            android:title="@string/userset1.6"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-7"
-            android:title="@string/userset1.7" />
+            android:title="@string/userset1.7"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color1-8"
-            android:title="@string/userset1.8" />
+            android:title="@string/userset1.8"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm10ledsettings2">
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-1"
-            android:title="@string/userset2.1"/>
+            android:title="@string/userset2.1"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-2"
-            android:title="@string/userset2.2"/>
+            android:title="@string/userset2.2"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-3"
-            android:title="@string/userset2.3"/>
+            android:title="@string/userset2.3"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-4"
-            android:title="@string/userset2.4"/>
+            android:title="@string/userset2.4"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-5"
-            android:title="@string/userset2.5"/>
+            android:title="@string/userset2.5"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-6"
-            android:title="@string/userset2.6"/>
+            android:title="@string/userset2.6"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-7"
-            android:title="@string/userset2.7"/>
+            android:title="@string/userset2.7"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm10_color2-8"
-            android:title="@string/userset2.8"/>
+            android:title="@string/userset2.8"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm25ledsettings1">
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-1"
-            android:title="@string/userset1.1" />
+            android:title="@string/userset1.1"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-2"
-            android:title="@string/userset1.2" />
+            android:title="@string/userset1.2"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-3"
-            android:title="@string/userset1.3" />
+            android:title="@string/userset1.3"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-4"
-            android:title="@string/userset1.4" />
+            android:title="@string/userset1.4"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-5"
-            android:title="@string/userset1.5" />
+            android:title="@string/userset1.5"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-6"
-            android:title="@string/userset1.6" />
+            android:title="@string/userset1.6"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-7"
-            android:title="@string/userset1.7" />
+            android:title="@string/userset1.7"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color1-8"
-            android:title="@string/userset1.8" />
+            android:title="@string/userset1.8"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pm25ledsettings2">
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-1"
-            android:title="@string/userset2.1"/>
+            android:title="@string/userset2.1"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-2"
-            android:title="@string/userset2.2"/>
+            android:title="@string/userset2.2"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-3"
-            android:title="@string/userset2.3"/>
+            android:title="@string/userset2.3"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-4"
-            android:title="@string/userset2.4"/>
+            android:title="@string/userset2.4"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-5"
-            android:title="@string/userset2.5"/>
+            android:title="@string/userset2.5"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-6"
-            android:title="@string/userset2.6"/>
+            android:title="@string/userset2.6"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-7"
-            android:title="@string/userset2.7"/>
+            android:title="@string/userset2.7"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="pm25_color2-8"
-            android:title="@string/userset2.8"/>
+            android:title="@string/userset2.8"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/normalledsettings">
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="normal_color_1"
-            android:title="@string/normaluserset1"/>
+            android:title="@string/normaluserset1"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
             android:key="normal_color_2"
-            android:title="@string/normaluserset2"/>
+            android:title="@string/normaluserset2"
+            android:defaultValue="-16777216"/>
         <com.jaredrummler.android.colorpicker.ColorPreference
-            android:defaultValue="@color/colorPrimary"
             android:key="normal_color_3"
-            android:title="@string/normaluserset3"/>
+            android:title="@string/normaluserset3"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

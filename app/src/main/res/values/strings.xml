@@ -64,6 +64,7 @@
     <string name="usersettings">Normal LED color setting</string>
 
     <string name="save">Save settings</string>
+    <string name="load">Load settings</string>
     
     <string name="userset1.1">User set 1 - 1</string>
     <string name="userset1.2">User set 1 - 2</string>
@@ -88,5 +89,12 @@
     <string name="normaluserset3">Normal user set 3</string>
 
     <string name="error_on_tcp">Check ip address and port number</string>
+    <string name="error_on_gps">Region setup is not complete, please try again to set the correct location or check the GPS status.</string>
 
+    <string name="IP">IP Address</string>
+    <string name="port">Port</string>
+
+    <string name="Save">Save Settings</string>
+    <string name="Load">Load Settings</string>
+    <string name="Exit">Connection Exit</string>
 </resources>

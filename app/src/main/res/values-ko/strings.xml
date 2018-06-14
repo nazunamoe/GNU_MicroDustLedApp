@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">미세 먼지 어플리케이션</string>
+    <string name="app_name">미세 먼지 LED 제어 어플리케이션</string>
     <string name="maker_name">2012010930 \n 지평강</string>
     <string name="led_name">미세 먼지 확인 LED 설정</string>
 
@@ -66,28 +66,35 @@
 
     <string name="save">설정값 저장</string>
 
-    <string name="userset1.1">사용자 정의 세트 1 - 1</string>
-    <string name="userset1.2">사용자 정의 세트 1 - 2</string>
-    <string name="userset1.3">사용자 정의 세트 1 - 3</string>
-    <string name="userset1.4">사용자 정의 세트 1 - 4</string>
-    <string name="userset1.5">사용자 정의 세트 1 - 5</string>
-    <string name="userset1.6">사용자 정의 세트 1 - 6</string>
-    <string name="userset1.7">사용자 정의 세트 1 - 7</string>
-    <string name="userset1.8">사용자 정의 세트 1 - 8</string>
+    <string name="userset1.1">사용자 정의 세트 1 - 최악</string>
+    <string name="userset1.2">사용자 정의 세트 1 - 매우 나쁨</string>
+    <string name="userset1.3">사용자 정의 세트 1 - 상당히 나쁨</string>
+    <string name="userset1.4">사용자 정의 세트 1 - 나쁨</string>
+    <string name="userset1.5">사용자 정의 세트 1 - 보통</string>
+    <string name="userset1.6">사용자 정의 세트 1 - 양호</string>
+    <string name="userset1.7">사용자 정의 세트 1 - 매우 양호</string>
+    <string name="userset1.8">사용자 정의 세트 1 - 최고</string>
 
-    <string name="userset2.1">사용자 정의 세트 2 - 1</string>
-    <string name="userset2.2">사용자 정의 세트 2 - 2</string>
-    <string name="userset2.3">사용자 정의 세트 2 - 3</string>
-    <string name="userset2.4">사용자 정의 세트 2 - 4</string>
-    <string name="userset2.5">사용자 정의 세트 2 - 5</string>
-    <string name="userset2.6">사용자 정의 세트 2 - 6</string>
-    <string name="userset2.7">사용자 정의 세트 2 - 7</string>
-    <string name="userset2.8">사용자 정의 세트 2 - 8</string>
+    <string name="userset2.1">사용자 정의 세트 2 - 최악</string>
+    <string name="userset2.2">사용자 정의 세트 2 - 매우 나쁨</string>
+    <string name="userset2.3">사용자 정의 세트 2 - 상당히 나쁨</string>
+    <string name="userset2.4">사용자 정의 세트 2 - 나쁨</string>
+    <string name="userset2.5">사용자 정의 세트 2 - 보통</string>
+    <string name="userset2.6">사용자 정의 세트 2 - 양호</string>
+    <string name="userset2.7">사용자 정의 세트 2 - 매우 양호</string>
+    <string name="userset2.8">사용자 정의 세트 2 - 최고</string>
 
     <string name="normaluserset1">사용자 정의 세트 1</string>
     <string name="normaluserset2">사용자 정의 세트 2</string>
     <string name="normaluserset3">사용자 정의 세트 3</string>
 
     <string name="error_on_tcp">IP 주소와 포트 번호, 또는 기기의 상태를 확인하십시오.</string>
+    <string name="error_on_gps">지역 설정이 완료되지 않았습니다, 정확한 위치 설정을 위해 다시 시도해 주시거나 GPS의 상태를 확인하여 주시기 바랍니다.</string>
 
+    <string name="IP">IP 주소</string>
+    <string name="port">포트</string>
+
+    <string name="Save">설정 저장</string>
+    <string name="Load">설정 불러오기</string>
+    <string name="Exit">연결 종료</string>
 </resources>
