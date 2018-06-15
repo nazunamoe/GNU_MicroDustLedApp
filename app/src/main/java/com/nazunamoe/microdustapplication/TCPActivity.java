@@ -1,181 +1,191 @@
 package com.nazunamoe.microdustapplication;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.StringTokenizer;
-
 
 public class TCPActivity extends AppCompatActivity {
-    TextView recieveText;
-    EditText editTextAddress, editTextPort, messageText;
-    Button connectBtn, clearBtn;
-    Database database = Database.getInstance();
-    Socket socket = null;
-
+    EditText editTextAddress, editTextPort;
+    Button connectBtn, saveBtn, IPSave, ExitBtn;
     @Override
     public void onBackPressed(){
         Intent intent = new Intent(TCPActivity.this, SettingActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+        SharedPreferences.Editor editor = preferences.edit();
         setContentView(R.layout.tcp_activity);
-        //앱 기본 스타일 설정
         getSupportActionBar().setElevation(0);
-
-        connectBtn = (Button) findViewById(R.id.buttonConnect);
+        connectBtn = (Button) findViewById(R.id.buttonload);
+        saveBtn = (Button) findViewById(R.id.buttonsave);
+        ExitBtn = (Button) findViewById(R.id.exitbtn);
         editTextAddress = (EditText) findViewById(R.id.addressText);
         editTextPort = (EditText) findViewById(R.id.portText);
+        if(preferences.getString("IP","0,0,0,0")=="0"){
+            editor.putString("IP",editTextAddress.getText().toString());
+        }
 
-        //connect 버튼 클릭
+        if(preferences.getInt("port",0)==0){
+            editor.putInt("port",Integer.parseInt(editTextPort.getText().toString()));
+        }
+
+
+        editTextAddress.addTextChangedListener(new TextWatcher() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+            SharedPreferences.Editor editor = preferences.edit();
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                editor.putString("IP",s.toString());
+                Log.d("test",preferences.getString("IP","0")+"");
+                editor.commit();
+                editor.apply();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editor.putString("IP",s.toString());
+                Log.d("test",preferences.getString("IP","0")+"");
+                editor.commit();
+                editor.apply();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                editor.putString("IP",s.toString());
+                Log.d("test",preferences.getString("IP","0")+"");
+                editor.commit();
+                editor.apply();
+            }
+        });
+
+        editTextPort.addTextChangedListener(new TextWatcher() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+            SharedPreferences.Editor editor = preferences.edit();
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                try{
+                    editor.putInt("port",Integer.parseInt(s.toString()));
+                }catch(NumberFormatException e){
+                    editor.putInt("port",0);
+                    editTextPort.setText("0");
+                }
+                Log.d("test",preferences.getInt("port",0)+"");
+                editor.commit();
+                editor.apply();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    editor.putInt("port",Integer.parseInt(s.toString()));
+                }catch(NumberFormatException e){
+                    editor.putInt("port",0);
+                    editTextPort.setText("0");
+                }
+                Log.d("test",preferences.getInt("port",0)+"");
+                editor.commit();
+                editor.apply();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try{
+                    editor.putInt("port",Integer.parseInt(s.toString()));
+                }catch(NumberFormatException e){
+                    editor.putInt("port",0);
+                    editTextPort.setText("0");
+                }
+                Log.d("test",preferences.getInt("port",0)+"");
+                editor.commit();
+                editor.apply();
+            }
+        });
+
         connectBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                MyClientTask myClientTask = new MyClientTask(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), "START"+database.stationname);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+                Client myClientTask = new Client(preferences.getString("IP","0.0.0.0"), preferences.getInt("port",8888), "START"+","+preferences.getString("stationname","명서동")+","+preferences.getString("stationname2","명서동"),TCPActivity.this.getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.commit();
                 myClientTask.execute();
             }
         });
-    }
 
-    public class MyClientTask extends AsyncTask<Void, Void, Void> {
-        String dstAddress;
-        int dstPort;
-        String response = "";
-        String myMessage = "";
+        ExitBtn.setOnClickListener(new View.OnClickListener() {
 
-        //constructor
-        MyClientTask(String addr, int port, String message){
-            dstAddress = addr;
-            dstPort = port;
-            myMessage = message;
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            Socket socket = null;
-            myMessage = myMessage.toString();
-            try {
-                socket = new Socket(dstAddress, dstPort);
-                //송신
-                OutputStream out = socket.getOutputStream();
-                out.write(myMessage.getBytes());
-
-                //수신
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                InputStream inputStream = socket.getInputStream();
-                /*
-                 * notice:
-                 * inputStream.read() will block if no data return
-                 */
-                while ((bytesRead = inputStream.read(buffer)) != -1){
-                    byteArrayOutputStream.write(buffer, 0, bytesRead);
-                    response += byteArrayOutputStream.toString("UTF-8");
-                }
-
-            } catch (UnknownHostException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                response = "UnknownHostException: " + e.toString();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                response = "IOException: " + e.toString();
-            }finally{
-                if(socket != null){
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+                Client myClientTask = new Client(preferences.getString("IP","0.0.0.0"), preferences.getInt("port",8888), "exit",TCPActivity.this.getApplicationContext());
+                myClientTask.execute();
             }
-            return null;
-        }
+        });
 
-        @Override
-        protected void onPostExecute(Void result) {
-            if(response == null){
-                Toast.makeText(TCPActivity.this, R.string.error_on_tcp, Toast.LENGTH_SHORT).show();
-            }else{
-                Log.d("test",""+response);
-                // pm10 유저설정 1 - pm10 유저설정 2 - pm25 유저설정 1 - pm25 유저설정 2 - 일반 유저설정 1~3 순서, RGB,
-                StringTokenizer st = new StringTokenizer(response,",");
-                String temp = st.nextToken();
-                switch(temp){
-                    // 받아온 명령어의 첫 부분으로 명령어의 종류를 구분한다.
-                    case "LED":{
-                        int a = 0;
-                        int b = 0;
-                        int c = 0;
-                        String tempred = "";
-                        String tempblue = "";
-                        String tempgreen = "";
-                        while(st.hasMoreTokens()){
-                            a = a +1;
-                            if(a==0){
-                                continue;
-                            }else{
-                                Log.d("d",a+"");
-                                if(a<25){
-                                    b=0;
-                                }else if(a<49){
-                                    b=1;
-                                }else if(a<73){
-                                    b=2;
-                                }else if(a<97){
-                                    b=3;
-                                }else{
-                                    b=4;
-                                }
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
+                Client myClientTask = new Client(preferences.getString("IP","0.0.0.0"), preferences.getInt("port",8888), "save,"+
+                        preferences.getInt("pm10_color1-1_red",0)+","+preferences.getInt("pm10_color1-1_green",0)+","+preferences.getInt("pm10_color1-1_blue",0)+","+
+                        preferences.getInt("pm10_color1-2_red",0)+","+preferences.getInt("pm10_color1-2_green",0)+","+preferences.getInt("pm10_color1-2_blue",0)+","+
+                        preferences.getInt("pm10_color1-3_red",0)+","+preferences.getInt("pm10_color1-3_green",0)+","+preferences.getInt("pm10_color1-3_blue",0)+","+
+                        preferences.getInt("pm10_color1-4_red",0)+","+preferences.getInt("pm10_color1-4_green",0)+","+preferences.getInt("pm10_color1-4_blue",0)+","+
+                        preferences.getInt("pm10_color1-5_red",0)+","+preferences.getInt("pm10_color1-5_green",0)+","+preferences.getInt("pm10_color1-5_blue",0)+","+
+                        preferences.getInt("pm10_color1-6_red",0)+","+preferences.getInt("pm10_color1-6_green",0)+","+preferences.getInt("pm10_color1-6_blue",0)+","+
+                        preferences.getInt("pm10_color1-7_red",0)+","+preferences.getInt("pm10_color1-7_green",0)+","+preferences.getInt("pm10_color1-7_blue",0)+","+
+                        preferences.getInt("pm10_color1-8_red",0)+","+preferences.getInt("pm10_color1-8_green",0)+","+preferences.getInt("pm10_color1-8_blue",0)+","+
 
-                                if(a%3 ==0){
-                                    if(c==8){
-                                        c=0;
-                                    }
-                                    tempblue = st.nextToken();
-                                    database.setpreset(b,c,new LEDColor(Integer.valueOf(tempred),Integer.valueOf(tempblue),Integer.valueOf(tempgreen)));
-                                    c=c+1;
+                        preferences.getInt("pm10_color2-1_red",0)+","+preferences.getInt("pm10_color2-1_green",0)+","+preferences.getInt("pm10_color2-1_blue",0)+","+
+                        preferences.getInt("pm10_color2-2_red",0)+","+preferences.getInt("pm10_color2-2_green",0)+","+preferences.getInt("pm10_color2-2_blue",0)+","+
+                        preferences.getInt("pm10_color2-3_red",0)+","+preferences.getInt("pm10_color2-3_green",0)+","+preferences.getInt("pm10_color2-3_blue",0)+","+
+                        preferences.getInt("pm10_color2-4_red",0)+","+preferences.getInt("pm10_color2-4_green",0)+","+preferences.getInt("pm10_color2-4_blue",0)+","+
+                        preferences.getInt("pm10_color2-5_red",0)+","+preferences.getInt("pm10_color2-5_green",0)+","+preferences.getInt("pm10_color2-5_blue",0)+","+
+                        preferences.getInt("pm10_color2-6_red",0)+","+preferences.getInt("pm10_color2-6_green",0)+","+preferences.getInt("pm10_color2-6_blue",0)+","+
+                        preferences.getInt("pm10_color2-7_red",0)+","+preferences.getInt("pm10_color2-7_green",0)+","+preferences.getInt("pm10_color2-7_blue",0)+","+
+                        preferences.getInt("pm10_color2-8_red",0)+","+preferences.getInt("pm10_color2-8_green",0)+","+preferences.getInt("pm10_color2-8_blue",0)+","+
 
-                                }else if(a%3 == 1){
-                                    tempred = st.nextToken();
-                                    //pm10-1 : 2~9
-                                    //pm10-2 : 10~17
-                                    //pm25-1 : 18~25
-                                    //pm25-2 : 26~33
-                                    //normal : 34~36
-                                }else if(a%3 == 2){
-                                    tempgreen = st.nextToken();
-                                }
-                            }
-                        }
-                        break;
-                    }
-                }
+                        preferences.getInt("pm25_color1-1_red",0)+","+preferences.getInt("pm25_color1-1_green",0)+","+preferences.getInt("pm25_color1-1_blue",0)+","+
+                        preferences.getInt("pm25_color1-2_red",0)+","+preferences.getInt("pm25_color1-2_green",0)+","+preferences.getInt("pm25_color1-2_blue",0)+","+
+                        preferences.getInt("pm25_color1-3_red",0)+","+preferences.getInt("pm25_color1-3_green",0)+","+preferences.getInt("pm25_color1-3_blue",0)+","+
+                        preferences.getInt("pm25_color1-4_red",0)+","+preferences.getInt("pm25_color1-4_green",0)+","+preferences.getInt("pm25_color1-4_blue",0)+","+
+                        preferences.getInt("pm25_color1-5_red",0)+","+preferences.getInt("pm25_color1-5_green",0)+","+preferences.getInt("pm25_color1-5_blue",0)+","+
+                        preferences.getInt("pm25_color1-6_red",0)+","+preferences.getInt("pm25_color1-6_green",0)+","+preferences.getInt("pm25_color1-6_blue",0)+","+
+                        preferences.getInt("pm25_color1-7_red",0)+","+preferences.getInt("pm25_color1-7_green",0)+","+preferences.getInt("pm25_color1-7_blue",0)+","+
+                        preferences.getInt("pm25_color1-8_red",0)+","+preferences.getInt("pm25_color1-8_green",0)+","+preferences.getInt("pm25_color1-8_blue",0)+","+
+
+                        preferences.getInt("pm25_color2-1_red",0)+","+preferences.getInt("pm25_color2-1_green",0)+","+preferences.getInt("pm25_color2-1_blue",0)+","+
+                        preferences.getInt("pm25_color2-2_red",0)+","+preferences.getInt("pm25_color2-2_green",0)+","+preferences.getInt("pm25_color2-2_blue",0)+","+
+                        preferences.getInt("pm25_color2-3_red",0)+","+preferences.getInt("pm25_color2-3_green",0)+","+preferences.getInt("pm25_color2-3_blue",0)+","+
+                        preferences.getInt("pm25_color2-4_red",0)+","+preferences.getInt("pm25_color2-4_green",0)+","+preferences.getInt("pm25_color2-4_blue",0)+","+
+                        preferences.getInt("pm25_color2-5_red",0)+","+preferences.getInt("pm25_color2-5_green",0)+","+preferences.getInt("pm25_color2-5_blue",0)+","+
+                        preferences.getInt("pm25_color2-6_red",0)+","+preferences.getInt("pm25_color2-6_green",0)+","+preferences.getInt("pm25_color2-6_blue",0)+","+
+                        preferences.getInt("pm25_color2-7_red",0)+","+preferences.getInt("pm25_color2-7_green",0)+","+preferences.getInt("pm25_color2-7_blue",0)+","+
+                        preferences.getInt("pm25_color2-8_red",0)+","+preferences.getInt("pm25_color2-8_green",0)+","+preferences.getInt("pm25_color2-8_blue",0)+","+
+
+                        preferences.getInt("normal_color1_red",0)+","+preferences.getInt("normal_color1_green",0)+","+preferences.getInt("normal_color1_blue",0)+","+
+                        preferences.getInt("normal_color2_red",0)+","+preferences.getInt("normal_color2_green",0)+","+preferences.getInt("normal_color2_blue",0)+","+
+                        preferences.getInt("normal_color3_red",0)+","+preferences.getInt("normal_color3_green",0)+","+preferences.getInt("normal_color3_blue",0),
+                        TCPActivity.this.getApplicationContext()
+                );
+                myClientTask.execute();
             }
-            super.onPostExecute(result);
-            Client myClientTask = new Client(editTextAddress.getText().toString(), Integer.parseInt(editTextPort.getText().toString()), "exit");
-            myClientTask.execute();
-        }
+        });
+
     }
 }
