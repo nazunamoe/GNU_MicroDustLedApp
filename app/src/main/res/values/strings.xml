@@ -87,6 +87,8 @@
     <string name="normaluserset1">Normal user set 1</string>
     <string name="normaluserset2">Normal user set 2</string>
     <string name="normaluserset3">Normal user set 3</string>
+    <string name="normaluserset4">Normal user set 4</string>
+    <string name="normaluserset5">Normal user set 5</string>
 
     <string name="error_on_tcp">Check ip address and port number</string>
     <string name="error_on_gps">Region setup is not complete, please try again to set the correct location or check the GPS status.</string>

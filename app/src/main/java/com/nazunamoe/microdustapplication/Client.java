@@ -116,7 +116,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
                                 b=2;
                             }else if(a<97){
                                 b=3;
-                            }else if(a==106) {
+                            }else if(a==116) {
                                 Toast.makeText(context,R.string.error_on_gps,Toast.LENGTH_LONG).show();
                             }else{
                                 b=4;

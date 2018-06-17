@@ -36,11 +36,18 @@ public class TCPActivity extends AppCompatActivity {
         editTextAddress = (EditText) findViewById(R.id.addressText);
         editTextPort = (EditText) findViewById(R.id.portText);
         if(preferences.getString("IP","0,0,0,0")=="0"){
-            editor.putString("IP",editTextAddress.getText().toString());
+            editor.putString("IP","0");
+            editTextAddress.setText("0");
+        }else{
+            editTextAddress.setText(preferences.getString("IP","192.168.0.5"));
         }
 
         if(preferences.getInt("port",0)==0){
-            editor.putInt("port",Integer.parseInt(editTextPort.getText().toString()));
+            editor.putInt("port",0);
+            editTextPort.setText("0");
+        }else{
+            Log.d("text",preferences.getInt("port",0)+"");
+            editTextPort.setText(String.valueOf(preferences.getInt("port",8888)));
         }
 
 
@@ -81,7 +88,6 @@ public class TCPActivity extends AppCompatActivity {
                     editor.putInt("port",Integer.parseInt(s.toString()));
                 }catch(NumberFormatException e){
                     editor.putInt("port",0);
-                    editTextPort.setText("0");
                 }
                 Log.d("test",preferences.getInt("port",0)+"");
                 editor.commit();
@@ -94,7 +100,6 @@ public class TCPActivity extends AppCompatActivity {
                     editor.putInt("port",Integer.parseInt(s.toString()));
                 }catch(NumberFormatException e){
                     editor.putInt("port",0);
-                    editTextPort.setText("0");
                 }
                 Log.d("test",preferences.getInt("port",0)+"");
                 editor.commit();
@@ -107,7 +112,6 @@ public class TCPActivity extends AppCompatActivity {
                     editor.putInt("port",Integer.parseInt(s.toString()));
                 }catch(NumberFormatException e){
                     editor.putInt("port",0);
-                    editTextPort.setText("0");
                 }
                 Log.d("test",preferences.getInt("port",0)+"");
                 editor.commit();
@@ -142,6 +146,7 @@ public class TCPActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Splashscreen.getAppContext());
                 Client myClientTask = new Client(preferences.getString("IP","0.0.0.0"), preferences.getInt("port",8888), "save,"+
+                        preferences.getInt("pm10_color1-0_red",0)+","+preferences.getInt("pm10_color1-0_green",0)+","+preferences.getInt("pm10_color1-0_blue",0)+","+
                         preferences.getInt("pm10_color1-1_red",0)+","+preferences.getInt("pm10_color1-1_green",0)+","+preferences.getInt("pm10_color1-1_blue",0)+","+
                         preferences.getInt("pm10_color1-2_red",0)+","+preferences.getInt("pm10_color1-2_green",0)+","+preferences.getInt("pm10_color1-2_blue",0)+","+
                         preferences.getInt("pm10_color1-3_red",0)+","+preferences.getInt("pm10_color1-3_green",0)+","+preferences.getInt("pm10_color1-3_blue",0)+","+
@@ -149,8 +154,8 @@ public class TCPActivity extends AppCompatActivity {
                         preferences.getInt("pm10_color1-5_red",0)+","+preferences.getInt("pm10_color1-5_green",0)+","+preferences.getInt("pm10_color1-5_blue",0)+","+
                         preferences.getInt("pm10_color1-6_red",0)+","+preferences.getInt("pm10_color1-6_green",0)+","+preferences.getInt("pm10_color1-6_blue",0)+","+
                         preferences.getInt("pm10_color1-7_red",0)+","+preferences.getInt("pm10_color1-7_green",0)+","+preferences.getInt("pm10_color1-7_blue",0)+","+
-                        preferences.getInt("pm10_color1-8_red",0)+","+preferences.getInt("pm10_color1-8_green",0)+","+preferences.getInt("pm10_color1-8_blue",0)+","+
 
+                        preferences.getInt("pm10_color2-0_red",0)+","+preferences.getInt("pm10_color2-0_green",0)+","+preferences.getInt("pm10_color2-0_blue",0)+","+
                         preferences.getInt("pm10_color2-1_red",0)+","+preferences.getInt("pm10_color2-1_green",0)+","+preferences.getInt("pm10_color2-1_blue",0)+","+
                         preferences.getInt("pm10_color2-2_red",0)+","+preferences.getInt("pm10_color2-2_green",0)+","+preferences.getInt("pm10_color2-2_blue",0)+","+
                         preferences.getInt("pm10_color2-3_red",0)+","+preferences.getInt("pm10_color2-3_green",0)+","+preferences.getInt("pm10_color2-3_blue",0)+","+
@@ -158,8 +163,8 @@ public class TCPActivity extends AppCompatActivity {
                         preferences.getInt("pm10_color2-5_red",0)+","+preferences.getInt("pm10_color2-5_green",0)+","+preferences.getInt("pm10_color2-5_blue",0)+","+
                         preferences.getInt("pm10_color2-6_red",0)+","+preferences.getInt("pm10_color2-6_green",0)+","+preferences.getInt("pm10_color2-6_blue",0)+","+
                         preferences.getInt("pm10_color2-7_red",0)+","+preferences.getInt("pm10_color2-7_green",0)+","+preferences.getInt("pm10_color2-7_blue",0)+","+
-                        preferences.getInt("pm10_color2-8_red",0)+","+preferences.getInt("pm10_color2-8_green",0)+","+preferences.getInt("pm10_color2-8_blue",0)+","+
 
+                        preferences.getInt("pm25_color1-0_red",0)+","+preferences.getInt("pm25_color1-0_green",0)+","+preferences.getInt("pm25_color1-0_blue",0)+","+
                         preferences.getInt("pm25_color1-1_red",0)+","+preferences.getInt("pm25_color1-1_green",0)+","+preferences.getInt("pm25_color1-1_blue",0)+","+
                         preferences.getInt("pm25_color1-2_red",0)+","+preferences.getInt("pm25_color1-2_green",0)+","+preferences.getInt("pm25_color1-2_blue",0)+","+
                         preferences.getInt("pm25_color1-3_red",0)+","+preferences.getInt("pm25_color1-3_green",0)+","+preferences.getInt("pm25_color1-3_blue",0)+","+
@@ -167,8 +172,8 @@ public class TCPActivity extends AppCompatActivity {
                         preferences.getInt("pm25_color1-5_red",0)+","+preferences.getInt("pm25_color1-5_green",0)+","+preferences.getInt("pm25_color1-5_blue",0)+","+
                         preferences.getInt("pm25_color1-6_red",0)+","+preferences.getInt("pm25_color1-6_green",0)+","+preferences.getInt("pm25_color1-6_blue",0)+","+
                         preferences.getInt("pm25_color1-7_red",0)+","+preferences.getInt("pm25_color1-7_green",0)+","+preferences.getInt("pm25_color1-7_blue",0)+","+
-                        preferences.getInt("pm25_color1-8_red",0)+","+preferences.getInt("pm25_color1-8_green",0)+","+preferences.getInt("pm25_color1-8_blue",0)+","+
 
+                        preferences.getInt("pm25_color2-0_red",0)+","+preferences.getInt("pm25_color2-0_green",0)+","+preferences.getInt("pm25_color2-0_blue",0)+","+
                         preferences.getInt("pm25_color2-1_red",0)+","+preferences.getInt("pm25_color2-1_green",0)+","+preferences.getInt("pm25_color2-1_blue",0)+","+
                         preferences.getInt("pm25_color2-2_red",0)+","+preferences.getInt("pm25_color2-2_green",0)+","+preferences.getInt("pm25_color2-2_blue",0)+","+
                         preferences.getInt("pm25_color2-3_red",0)+","+preferences.getInt("pm25_color2-3_green",0)+","+preferences.getInt("pm25_color2-3_blue",0)+","+
@@ -176,11 +181,12 @@ public class TCPActivity extends AppCompatActivity {
                         preferences.getInt("pm25_color2-5_red",0)+","+preferences.getInt("pm25_color2-5_green",0)+","+preferences.getInt("pm25_color2-5_blue",0)+","+
                         preferences.getInt("pm25_color2-6_red",0)+","+preferences.getInt("pm25_color2-6_green",0)+","+preferences.getInt("pm25_color2-6_blue",0)+","+
                         preferences.getInt("pm25_color2-7_red",0)+","+preferences.getInt("pm25_color2-7_green",0)+","+preferences.getInt("pm25_color2-7_blue",0)+","+
-                        preferences.getInt("pm25_color2-8_red",0)+","+preferences.getInt("pm25_color2-8_green",0)+","+preferences.getInt("pm25_color2-8_blue",0)+","+
 
+                        preferences.getInt("normal_color0_red",0)+","+preferences.getInt("normal_color0_green",0)+","+preferences.getInt("normal_color0_blue",0)+","+
                         preferences.getInt("normal_color1_red",0)+","+preferences.getInt("normal_color1_green",0)+","+preferences.getInt("normal_color1_blue",0)+","+
                         preferences.getInt("normal_color2_red",0)+","+preferences.getInt("normal_color2_green",0)+","+preferences.getInt("normal_color2_blue",0)+","+
-                        preferences.getInt("normal_color3_red",0)+","+preferences.getInt("normal_color3_green",0)+","+preferences.getInt("normal_color3_blue",0),
+                        preferences.getInt("normal_color3_red",0)+","+preferences.getInt("normal_color3_green",0)+","+preferences.getInt("normal_color3_blue",0)+","+
+                        preferences.getInt("normal_color4_red",0)+","+preferences.getInt("normal_color4_green",0)+","+preferences.getInt("normal_color4_blue",0),
                         TCPActivity.this.getApplicationContext()
                 );
                 myClientTask.execute();

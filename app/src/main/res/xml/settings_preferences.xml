@@ -160,6 +160,14 @@
             android:key="normal_color_3"
             android:title="@string/normaluserset3"
             android:defaultValue="-16777216"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="normal_color_4"
+            android:title="@string/normaluserset4"
+            android:defaultValue="-16777216"/>
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="normal_color_5"
+            android:title="@string/normaluserset5"
+            android:defaultValue="-16777216"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

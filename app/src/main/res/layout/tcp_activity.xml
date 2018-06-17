@@ -45,8 +45,7 @@
             android:layout_alignStart="@+id/addressText"
             android:layout_below="@+id/addressText"
             android:ems="10"
-            android:inputType="number"
-            android:text="8888" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/addressText"
@@ -55,8 +54,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="31dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="192.168.0.5" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView4"

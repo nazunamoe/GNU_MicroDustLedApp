@@ -87,6 +87,8 @@
     <string name="normaluserset1">사용자 정의 세트 1</string>
     <string name="normaluserset2">사용자 정의 세트 2</string>
     <string name="normaluserset3">사용자 정의 세트 3</string>
+    <string name="normaluserset4">사용자 정의 세트 4</string>
+    <string name="normaluserset5">사용자 정의 세트 5</string>
 
     <string name="error_on_tcp">IP 주소와 포트 번호, 또는 기기의 상태를 확인하십시오.</string>
     <string name="error_on_gps">지역 설정이 완료되지 않았습니다, 정확한 위치 설정을 위해 다시 시도해 주시거나 GPS의 상태를 확인하여 주시기 바랍니다.</string>
